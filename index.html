@@ -7,22 +7,43 @@
 </head>
 <body>
 
-<h1 id="h1">#h1 is here</h1>
+<h1 id="h1">#h1 is here. y dont u click ;-)</h1>
 
 <ul class="unordered-list">
-	<li class="list one"><a href="#">one</a></li>
-	<li class="list two"><a href="#">two</a></li>
-	<li class="list three"><a href="#">three</a></li>
+	<li class="list one">
+		<a href="#">one</a>
+		<ul class="sub-list none">
+			<li><a href="#">one.one</a></li>
+			<li><a href="#">one.two</a></li>
+			<li><a href="#">one.three</a></li>
+		</ul>
+	</li>
+	<li class="list two">
+		<a href="#">two</a>
+		<ul class="sub-list fadeout">
+			<li><a href="#">one.one</a></li>
+			<li><a href="#">one.two</a></li>
+			<li><a href="#">one.three</a></li>
+		</ul>
+	</li>
+	<li class="list three">
+		<a href="#">three</a>
+		<ul class="sub-list slideup">
+			<li><a href="#">one.one</a></li>
+			<li><a href="#">one.two</a></li>
+			<li><a href="#">one.three</a></li>
+		</ul>
+	</li>
 </ul>
 
 <h2 class="h2">.h2</h2>
 	
-<button class="button">trigger</button>
+<button class="button">click trigger</button>
 
 <hr />
 
 <textarea class="textarea" rows="5" cols="70"></textarea>
-<button class="load-json">load</button>
+<button class="load-json1">load a.json as text</button>&nbsp;<button class="load-json2">load and show value on json</button>
 
 
 

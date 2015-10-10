@@ -22,19 +22,21 @@
 		},
 
 		// get HTML Elements simply
-		bi: function(str){
+		bi: function(str, parentElement){
+			// alert(parentElement === undefined)
+			var $targ = parentElement === undefined ? $d : parentElement;
 			switch(str.charAt(0)) {
 				case '#' :
-					return $d.getElementById(str.substring(1));
+					return $targ.getElementById(str.substring(1));
 					break;
 				case '.' :
 					// if there's only 1 class element, respond it. if they are more than 2, respond Array
-					var $classes = $d.getElementsByClassName(str.substring(1));
+					var $classes = $targ.getElementsByClassName(str.substring(1));
 					return $classes.length == 1 ? $classes[0] : $classes;
 					break;
 				default :
 					// if there's only 1 tag, respond it. if they are more than 2, respond Array
-					var $tags = $d.getElementsByTagName(str);
+					var $tags = $targ.getElementsByTagName(str);
 					return $tags.length == 1 ? $classes[0] : $classes;
 					break;
 			}
@@ -49,6 +51,43 @@
 	$idElem.addEventListener('click', function(){
 		alert('hoge');
 	});
+
+	//
+	mija.bi('.one', mija.bi('.unordered-list')).addEventListener('mouseenter', function(e){
+		var $targ = mija.bi('.sub-list', e.currentTarget);
+		$targ.classList.remove('none');
+		$targ.classList.add('block');
+	});
+	mija.bi('.one', mija.bi('.unordered-list')).addEventListener('mouseleave', function(e){
+		var $targ = mija.bi('.sub-list', e.currentTarget);
+		$targ.classList.remove('block');
+		$targ.classList.add('none');
+	});
+
+	//
+	mija.bi('.two', mija.bi('.unordered-list')).addEventListener('mouseenter', function(e){
+		var $targ = mija.bi('.sub-list', e.currentTarget);
+		$targ.classList.remove('fadeout');
+		$targ.classList.add('fadein');
+	});
+	mija.bi('.two', mija.bi('.unordered-list')).addEventListener('mouseleave', function(e){
+		var $targ = mija.bi('.sub-list', e.currentTarget);
+		$targ.classList.remove('fadein');
+		$targ.classList.add('fadeout');
+	});
+
+	//
+	mija.bi('.three', mija.bi('.unordered-list')).addEventListener('mouseenter', function(e){
+		var $targ = mija.bi('.sub-list', e.currentTarget);
+		$targ.classList.remove('slideup');
+		$targ.classList.add('slidedown');
+	});
+	mija.bi('.three', mija.bi('.unordered-list')).addEventListener('mouseleave', function(e){
+		var $targ = mija.bi('.sub-list', e.currentTarget);
+		$targ.classList.remove('slidedown');
+		$targ.classList.add('slideup');
+	});
+
 
 	// 
 	var $classElem2 = mija.bi('.h2');
@@ -80,14 +119,18 @@
 	});
 
 	// load json
-	mija.bi('.load-json').addEventListener('click', function(){
+	mija.bi('.load-json1').addEventListener('click', function(){
 		mija.loadJson('a.json',
 			function(json){
 				var $targ = mija.bi('.textarea');
-				// $targ.innerHTML = arguments[1];
+				$targ.innerHTML = arguments[1];
+			});
+	});
+	mija.bi('.load-json2').addEventListener('click', function(){
+		mija.loadJson('a.json',
+			function(json){
+				var $targ = mija.bi('.textarea');
 				$targ.innerHTML = json.lawson.a;
-			}, function(str){
-				// occured error
 			});
 	});
 
