@@ -46,11 +46,12 @@
 	}
 
 
-	//
+	// 
 	var $idElem = mija.bi('#h1');
 	$idElem.addEventListener('click', function(){
 		alert('hoge');
 	});
+
 
 	//
 	mija.bi('.one', mija.bi('.unordered-list')).addEventListener('mouseenter', function(e){
@@ -88,6 +89,22 @@
 		$targ.classList.add('slideup');
 	});
 
+	// // adds class "foo" to el
+	// el.classList.add("foo");
+
+	// // removes class "bar" from el
+	// el.classList.remove("bar");
+
+	// // toggles the class "foo"
+	// el.classList.toggle("foo");
+
+	// // outputs "true" to console if el contains "foo", "false" if not
+	// console.log( el.classList.contains("foo") );
+
+	// // add multiple classes to el
+	// el.classList.add( "foo", "bar" );
+
+
 
 	// 
 	var $classElem2 = mija.bi('.h2');
@@ -101,6 +118,7 @@
 		});
 	});
 
+
 	//
 	$classElem2.addEventListener('mouseleave', function(e){
 		var $e = e.currentTarget;
@@ -112,11 +130,13 @@
 		});
 	});
 
+
 	//
 	var $classElem = mija.bi('.button');
 	$classElem.addEventListener('click', function(){
 		alert('hoge');
 	});
+
 
 	// load json
 	mija.bi('.load-json1').addEventListener('click', function(){
