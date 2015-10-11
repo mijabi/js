@@ -3,10 +3,28 @@
 	var mija = {
 
 		// add multiple styles by Object
-		giveClass: function($elem, css){
+		giveStyles: function($elem, css){
 			for(var i in css) {
 				$elem.style[i] = css[i];
 			}
+		},
+
+		// add multiple styles from Object
+		giveClasses: function($elem, css){
+			var classString = '';
+			for(var i in css) {
+				classString += ' ' + css[i]
+			}
+			$elem.className = $elem.className + classString;
+		},
+
+		// add multiple styles from Array
+		stealClasses: function($elem, css){
+			var originalClass = $elem.className;
+			for(var i in css) {
+				if(originalClass.indexOf(css[i]) != -1) originalClass = originalClass.split(css[i]).join('');
+			}
+			$elem.className = originalClass;
 		},
 
 		// load JSON file asynchronously
@@ -37,13 +55,35 @@
 				default :
 					// if there's only 1 tag, respond it. if they are more than 2, respond Array
 					var $tags = $targ.getElementsByTagName(str);
-					return $tags.length == 1 ? $classes[0] : $classes;
+					return $tags.length == 1 ? $tags[0] : $tags;
 					break;
 			}
 
 		}
 
 	}
+
+
+	//
+	mija.bi('input').setAttribute('checked', 'checked');
+	var inputIntervalCount = 0;
+	var inputInterval = setInterval(function(){
+		inputIntervalCount++;
+		if(inputIntervalCount === 1) console.log(mija.bi('input').hasAttribute('checked'));
+		if(inputIntervalCount === 2) console.log(mija.bi('input').getAttribute('checked'));
+		if(inputIntervalCount === 3) mija.bi('input').removeAttribute('checked');
+		if(inputIntervalCount === 4) clearInterval(inputInterval);
+	},
+	2000);
+
+
+	//
+	var $mem = mija.bi('em');
+	for(var j in $mem) {
+		mija.giveClasses($mem[j], ['bold', 'underline']);
+	}
+
+	mija.stealClasses($mem[0], ['bold']);
 
 
 	// 
@@ -110,7 +150,7 @@
 	var $classElem2 = mija.bi('.h2');
 	$classElem2.addEventListener('mouseenter', function(e){
 		var $e = e.currentTarget;
-		mija.giveClass($e, {
+		mija.giveStyles($e, {
 			textDecoration: 'underline',
 			fontWeight: 'bold',
 			cursor: 'pointer',
@@ -122,7 +162,7 @@
 	//
 	$classElem2.addEventListener('mouseleave', function(e){
 		var $e = e.currentTarget;
-		mija.giveClass($e, {
+		mija.giveStyles($e, {
 			textDecoration: 'none',
 			fontWeight: 'regular',
 			cursor: 'default',

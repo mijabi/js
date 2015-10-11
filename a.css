@@ -34,6 +34,13 @@ li {
 	display: block;
 }
 
+.bold {
+	font-weight: bold;
+}
+
+.underline {
+	text-decoration: underline;
+}
 
 
 /* partial/_transition.scss */
