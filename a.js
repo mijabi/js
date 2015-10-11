@@ -195,7 +195,16 @@
 	});
 
 
+	// height
+	var hei = mija.bi('#h1').clientHeight;
+	mija.bi('#h1').style.height = (hei * 2) + 'px';
 
+
+	// left, top
+	var le = mija.bi('#h1').offsetLeft;
+	console.log('#h1.left: ' + le);
+	var to = mija.bi('#h1').offsetTop;
+	console.log('#h1.top: ' + to);
 
 // style types
 // http://www.comptechdoc.org/independent/web/cgi/javamanual/javastyle.html
